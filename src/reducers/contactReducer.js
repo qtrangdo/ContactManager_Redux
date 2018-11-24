@@ -1,7 +1,8 @@
-import {GET_CONTACTS, DELETE_CONTACT, ADD_CONTACT} from '../actions/types';
+import {GET_CONTACTS, DELETE_CONTACT, ADD_CONTACT, GET_NEW_CONTACT, UPDATE_CONTACT} from '../actions/types';
 
 const initialState = {
-    contacts: []
+    contacts: [],
+    contact:{}
 }
 export default function(state=initialState,action){
     switch(action.type) {
@@ -9,6 +10,20 @@ export default function(state=initialState,action){
             return {
                 ...state, 
                 contacts: action.payload
+            }
+        case GET_NEW_CONTACT:
+            return {
+                ...state, 
+                contact: action.payload
+            }
+        case UPDATE_CONTACT:
+            return {
+                ...state, 
+                contacts: state.contacts.map(contact => {
+                    return contact.id === action.payload.id 
+                    ? (contact = action.payload)
+                    : contact
+                })
             }
         case DELETE_CONTACT:
             return {

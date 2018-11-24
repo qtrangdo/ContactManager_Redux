@@ -102,7 +102,7 @@ class AddContact extends Component {
 }
 
 AddContact.propTypes = {
-  addContact: PropTypes.func.isrequired
+  addContact: PropTypes.func.isRequired
 }
 
 export default connect (null,{addContact})(AddContact);
